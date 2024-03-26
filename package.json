@@ -1,8 +1,13 @@
 {
   "name": "ts-restarter",
   "displayName": "TS Restarter",
-  "description": "Restart TS after changes in specific files/folders",
-  "version": "0.0.1",
+  "description": "Restart TS after changes in specific files",
+  "version": "1.0.0",
+  "publisher": "stormier",
+  "author": {
+    "name": "Stanislas Ormières",
+    "email": "stan@stormier.ninja"
+  },
   "activationEvents": [
     "*"
   ],
@@ -14,6 +19,12 @@
   ],
   "main": "./out/extension.js",
   "icon": "./icons/ts-restarter-128.png",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/laruiss/ts-restarter"
+  },
+  "homepage": "https://github.com/laruiss/ts-restarter#readme",
   "contributes": {
     "configuration": {
       "title": "TS Restarter",
