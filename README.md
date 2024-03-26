@@ -1,35 +1,61 @@
-# ts-restarter README
+# TS Restarter
 
-This is the README for your extension "ts-restarter". After writing up a brief description, we recommend including the following sections.
+This extension makes VSCode restart TS Server automatically on file (globs) change!
 
-## Features
+## TL;DR
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+Put this (or something like it) in the `settings.json` of the project:
 
-For example if there is an image subfolder under your extension project workspace:
+```jsonc
+{
+  // (...)
+  "ts-restarter.watch": ["./packages/shared/src/**/*.ts"], // Maybe ./packages/shared/dist/**/*.js
+  "ts-restarter.ignore": ["./packages/shared/src/**/*.spec.ts"]
+  // (...)
+}
+```
 
-\!\[feature X\]\(images/feature-x.png\)
+## The problem
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+When working on monorepo with a shared library, if one changes some files in it, one has to restart VSCode TS Server for the changes
+to be reflected in the server and/or client (or other) workspace.
 
-## Requirements
+## The basic solutions
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+One can either:
+
+- Restart VSCode (bad, don't do that)
+- Reload window (almost as bad, don't do that)
+- Restart TS Server manually: `Shift Ctrl p` or `Shift Cmd p`, and then search for the command TypeScript: Restart TS Server (better)
+- Set a keyboard shortcut like `Ctrl K T` and use it every time something in `shared` has changed (much better)
+
+## The solution this extension provides
+
+The even better solution would be to let VSCode know what files to watch to restart its TS Server on any change on this specific files (with)... That is what this extension is for.
+
+Maybe this extension is useles, if you know a better way, please tell me!
+
+### How
+
+Tell the extension what globs to watch (and optionnally ignore), chokidar will watch them and if a change occurs, the VSCode internal command `typescript.restartTsServer` will be executed.
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
 This extension contributes the following settings:
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+- `ts-restarter.watch`: array of globs for files to watch.
+- `ts-restarter.ignore`: array of globs for files to ignore.
 
-## Known Issues
+So in your configuration (`settings.json` in the `.vscode` folder at the root of the project is recommended), put something like this:
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+```jsonc
+{
+  // (...)
+  "ts-restarter.watch": ["./packages/shared/src/**/*.ts"],
+  "ts-restarter.ignore": ["./packages/shared/src/**/*.spec.ts"]
+  // (...)
+}
+```
 
 ## Release Notes
 
@@ -37,35 +63,4 @@ Users appreciate release notes as you update your extension.
 
 ### 1.0.0
 
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+Initial release of TS Server
