@@ -9,7 +9,7 @@
     "email": "stan@stormier.ninja"
   },
   "activationEvents": [
-    "*"
+    "onStartupFinished"
   ],
   "engines": {
     "vscode": "^1.87.0"
