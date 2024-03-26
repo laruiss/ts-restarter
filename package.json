@@ -2,7 +2,7 @@
   "name": "ts-restarter",
   "displayName": "TS Restarter",
   "description": "Restart TS after changes in specific files",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "stormier",
   "author": {
     "name": "Stanislas Ormières",

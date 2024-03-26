@@ -9,8 +9,10 @@ Put this (or something like it) in the `settings.json` of the project:
 ```jsonc
 {
   // (...)
-  "ts-restarter.watch": ["./packages/shared/src/**/*.ts"], // Maybe ./packages/shared/dist/**/*.js
-  "ts-restarter.ignore": ["./packages/shared/src/**/*.spec.ts"]
+  "ts-restarter.watch": [
+    "./packages/shared/dist/**/*.js"
+    "./packages/shared/types/**/*.ts"
+  ],
   // (...)
 }
 ```
@@ -51,8 +53,10 @@ So in your configuration (`settings.json` in the `.vscode` folder at the root of
 ```jsonc
 {
   // (...)
-  "ts-restarter.watch": ["./packages/shared/src/**/*.ts"],
-  "ts-restarter.ignore": ["./packages/shared/src/**/*.spec.ts"]
+  "ts-restarter.watch": [
+    "./packages/shared/dist/**/*.js"
+    "./packages/shared/types/**/*.ts"
+  ],
   // (...)
 }
 ```
@@ -60,6 +64,10 @@ So in your configuration (`settings.json` in the `.vscode` folder at the root of
 ## Release Notes
 
 Users appreciate release notes as you update your extension.
+
+### 1.0.1
+
+Put `dist` and `types` instead of source files in the examples in README
 
 ### 1.0.0
 
